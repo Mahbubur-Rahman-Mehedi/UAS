@@ -1,0 +1,223 @@
+body
+{
+	margin: 0 auto;
+	padding:  0 0;
+	background-color: white;
+	font-family:  sans-serif;
+	color: black;
+	background-size: cover;
+	max-width: 100%;
+	height:auto;
+}
+
+@-ms-viewport{
+	width: device-width;
+}
+
+.nav-item{
+	padding: 8px 20px;
+	margin: 0px 20px;
+}
+
+.navbar ul {
+	list-style: none;
+	text-align: center;
+}
+
+.navbar ul li {
+	display: table;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.navbar a {
+	display: inline-block;
+	padding: 10px;
+	color: white !important;
+	cursor:pointer;
+	text-decoration:none;
+}
+
+.navbar a:hover {
+	color: powderblue !important;
+	text-decoration: none;
+}
+
+.navbar-nav{
+	display:inline-flex;
+	justify-content:center !important;
+}
+
+.sign a {
+	color: white !important;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.sign a:hover {
+	color: powderblue !important;
+	text-decoration: none;
+}
+
+
+.bookflight .btn {
+	text-align: center;
+	border-radius: 5px;
+	background: #243c4f;
+	color: #fff;
+	font-weight: 600;
+}
+
+.bookflight .btn:hover {
+	border: 1px solid #243c4f;
+	background: white;
+	color: #243c4f;
+}
+
+
+.newsletter {
+	margin: 0 auto;
+	text-align: center;
+}
+
+.newsletter .form-control {
+	border-color: #ffffff;
+	border-radius: 5px;
+}
+
+.newsletter.form-control:focus {
+	box-shadow: none;
+	border: 1px solid #243c4f;
+	border-radius: 5px;
+}
+
+.newsletter .btn {
+	border-radius: 5px;
+	background: #243c4f;
+	color: #fff;
+	font-weight: 500;
+}
+
+.newsletter .btn:hover {
+	border: 1px solid #243c4f;
+	background: white;
+	color: #243c4f;
+}
+
+
+.copyright {
+	background-size: cover;
+	position: relative;
+	color: white;
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+	height: auto;
+	padding: 10px;
+	padding-top: 30px;
+	background-color:rgba(20,20,30,0.9) !important;
+}
+
+.footer {
+	background-size: cover;
+	position: relative;
+	color: white;
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+	height: auto;
+	padding-top: 10px;
+}
+
+.copyright p {
+	color: grey;
+}
+
+.copyright a:hover {
+	color: powderblue;
+}
+
+.copyright a {
+	color: white;
+}
+
+
+.page-footer h5 {
+	color: white;
+}
+
+.copyright {
+	padding: 10px;
+	margin: 0 auto;
+}
+
+.page-footer {
+	background-color: rgb(25,25,50);
+}
+
+.page-footer .container {
+	background-color: rgb(25,25,50);
+}
+
+.page-footer .container .row{
+	background-color: rgb(25,25,50);
+}
+
+.page-footer ul li a {
+	color: white;
+	line-height: 2;
+	text-decoration:none;
+}
+
+.page-footer ul li a:hover {
+	color: powderblue;
+}
+
+.page-footer i:hover {
+	color: powderblue;
+	font-size:20px;
+}
+
+table {
+    table-layout: auto !important;
+}
+
+th, td,  thead th, tbody td, tfoot td, tfoot th {
+    width: auto !important;
+}
+
+table .btn:hover{
+	border: 1px solid #243c4f;
+	color: #243c4f;
+	background-color: white;
+}
+
+table .btn{
+	background-color: #243c4f;
+}
+
+tr td:last-child {
+    width: 1%;
+    white-space: nowrap;
+}
+
+label{
+	font-weight: 400;
+}
+
+.profileImage {
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+}
+
+.blink {
+	animation: blinker 3s step-start infinite;
+}
+
+@keyframes blinker {
+	50% {
+		color: palegoldenrod;
+		font-size: 17px;
+	}
+}

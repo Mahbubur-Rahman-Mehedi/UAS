@@ -1,0 +1,188 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MainMaster.Master.cs" Inherits="UAS.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <link rel="stylesheet" href="css/style.css" />
+
+	<link href="lib/font-awesome/css/all.min.css" rel="stylesheet" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/brands.css" integrity="sha384-BKw0P+CQz9xmby+uplDwp82Py8x1xtYPK3ORn/ZSoe6Dk3ETP59WCDnX+fI1XCKK" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+        <style>
+          .profileImage{
+             width:30px;
+             height:30px;
+             border-radius: 50%;
+          }
+
+          .blink {
+	        animation: blinker 3s step-start infinite;
+          }
+  
+          @keyframes blinker {
+	        50% {
+	          color:palegoldenrod;
+              font-size:17px;
+	        }
+          }
+
+        </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <%-- navbar --%>
+            <nav class="navbar navbar-dark bg-dark justify-content-between" style="text-align: center; color: white !important; background-color: rgba(0,0,50,0.9) !important; padding-left: 5%; padding-right: 5%;">
+                <a class="navbar-brand" style="font-size: 25px;"><b>LOGO</b></a>
+                <div class="sign" style="float: right;">
+                    <%-- $ USD--%> &nbsp;  &nbsp; 
+			<a href="loginTeacher.aspx" id="signIn" runat="server">Login as a Teacher | </a>  <a href="loginStudent.aspx" id="signUp" runat="server">Student</a>
+                    
+                   
+                        <%--<p class="lead">Login as a <a href="loginTeacher.aspx"><b>Teacher</b></a> or a <a href="loginStudent.aspx"><b>Student</b></a></p>--%>
+                    
+
+                    <a href="userLogout.aspx" id="logout" runat="server">Logout</a>
+                    <a href="UserProfilePage.aspx" id="userName" runat="server"></a>
+                    <asp:ImageButton ID="profileImage" CssClass="profileImage" AlternateText="no profile" runat="server" OnClick="profileImage_Click" Visible="false" />
+
+                    <%--  <asp:ImageButton ID="profileImage" CssClass="profileImage" AlternateText="no profile" runat="server" ImageUrl='<%# Session["profileImage"] == DBNull.Value ? "image/noimg.png" : "data:Image/png;base64,"+ Convert.ToBase64String((byte[])Session["profileImage"]) %>' OnClick="profileImage_Click" Visible="false" />--%>
+
+                    <%-- <asp:Label ID="userName" runat="server" Visible="false"></asp:Label>--%>
+                </div>
+
+            </nav>
+
+            <nav class="navbar sticky-top navbar-dark bg-dark justify-content-between" style="float: none; justify-content: center; padding-left: 2%; padding-right: 2%; color: white !important; background-color: rgba(0,0,50,0.9) !important;">
+                &nbsp; &nbsp; <a class="nav-link" id="back" runat="server" href="#">BACK </a>
+                <ul class="navbar-nav nav justify-content-center mx-auto" style="text-align: center; list-style: none; display: inline-flex; flex-direction: row;">
+                    <li class="nav-item">
+                        <a class="nav-link" id="adminStudentControl" runat="server" href="adminStudentControl.aspx">Students</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="adminTeacherControl" runat="server" href="adminTeacherControl.aspx">Teacher</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="adminUni" runat="server" href="adminUniList.aspx">University</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="adminQue" runat="server" href="adminQuestion.aspx">Questions</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link" id="adminCourse" runat="server" href="adminCourse.aspx">Course</a>
+                    </li>
+                   
+                    <%-- <li class="nav-item"  >
+                     
+                           <a class="nav-link" id="profileLink" runat="server" href="UserProfilePage.aspx" >PROFILE</a>
+                    </li>--%>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.aspx">HOME <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pageFAQ.html" target="_blank">ABOUT US</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contactInfo.html" target="_blank">CONTACT US</a>
+                    </li>
+                </ul>
+                <div style="text-align: right; float: right !important;">
+                    <i class="blink fa-solid fa-coins"></i>&nbsp;
+                    <asp:Label ID="lblPointsTotal" runat="server" Text="0"></asp:Label>
+                    &nbsp;  &nbsp; 
+                </div>
+            </nav>
+            <%-- navbar end --%>
+
+            <%--<asp:LinkButton ID="lnkbtnAdminTcks" runat="server" href="admnTckts.aspx" OnClick="lnkbtnAdminTcks_Click" >Tickets</asp:LinkButton>--%>
+           
+                
+            <%-- Other page content --%>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+
+            </asp:ContentPlaceHolder>
+            <%-- Other page content end --%>
+
+            <%-- Footer --%>
+            <footer class="page-footer">
+                <div class="container text-center text-md-left justify-content-center" style="padding: 10px; margin: auto;">
+                    <div class="row pt-4 justify-content-center" style="padding: 10px; margin: auto;">
+                        <div class="col-md-7 mx-auto justify-content-center">
+                            <div class="newsletter">
+                                <h5 class="text-uppercase pb-2" style="text-align: center; color: white;">Subscribe to us</h5>
+                                <div class="input-group">
+                                    <input type="email" id="footerEmail" class="form-control" runat="server" placeholder="Enter your email" style="text-align: left; border: 1px solid grey; border-radius: 5px;">&nbsp;
+							<span class="input-group-btn">
+                                <%--<button class="btn btn-dark" type="submit">Subscribe Now</button><br>--%>
+                                <asp:Button ID="footerEmailBtn" class="btn btn-dark" runat="server" Text="Subscribe Now" OnClick="footerEmailBtn_Click" />
+                                <br>
+                                <br>
+                                <br>
+                            </span>
+                                </div>
+                            </div>
+                            <h5 class="text-uppercase" style="text-align: center;">SOCIAL MEDIA</h5>
+                            <ul class="list-unstyled d-flex" style="color: white; justify-content: center;">
+                                <li><a href="https://www.facebook.com/" target="_blank"><i class="fa-brands fa-facebook"></i></a></li>
+                                &nbsp; &nbsp; &nbsp;
+                                <li><a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+                                &nbsp; &nbsp; &nbsp;
+                                <li><a href="https://twitter.com/" target="_blank"><i class="fa-brands fa-twitter"></i></a></li>
+                                &nbsp; &nbsp; &nbsp;
+                                <li><a href="https://www.linkedin.com/" target="_blank"><i class="fa-brands fa-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+
+                        <hr class="clearfix w-100 d-md-none">
+                        <div class="col-md-3 mx-auto">
+                            <h5 class="text-uppercase">INFORMATION</h5>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a href="index.aspx">Home</a>
+                                </li>
+                                <li>
+                                    <a href="pageFAQ.html" target="_blank">About Us</a>
+                                </li>
+                                <li>
+                                    <a href="contactInfo.html" target="_blank">Contact Us</a>
+                                </li>
+                                <li>
+                                    <a href="#">Terms and Conditions</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="copyright pt-3">
+                    <h5>&copy; 2022 <a href="http://www.google.com/" target="_blank" style="text-decoration: none;">UAS</a><span style="font-size: 5px">&#9679;</span></h5>
+                    <p>All rights reserved</p>
+                </div>
+            </footer>
+
+            <%-- Footer End--%>
+
+            <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
+            <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+
+        </div>
+    </form>
+</body>
+</html>
