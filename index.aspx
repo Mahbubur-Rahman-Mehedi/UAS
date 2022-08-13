@@ -9,7 +9,7 @@
    
       <%-- Course List --%>
 
-          <div class="col-md-6">
+          <div class="col-md-12" style="place-content:center">
               <div class="card">
                   <div class="card-body">
                       <div class="row">
@@ -31,7 +31,7 @@
                       </div>
                       <div class="row">
                           <div class="col">
-                              <asp:GridView class="table border-0 table-striped  table-responsive" ID="eventGrid" runat="server" AutoGenerateColumns="false" AllowPaging="true" OnPageIndexChanging="OnPageIndexChanging" PageSize="10">
+                              <asp:GridView class="table border-0 table-striped table-responsive" ID="eventGrid" runat="server" AutoGenerateColumns="false" AllowPaging="true" OnPageIndexChanging="OnPageIndexChanging" PageSize="10">
                                   <Columns>
 
                                       <asp:BoundField DataField="c_id" HeaderText="ID" />
@@ -67,7 +67,7 @@
 
      <%-- Admisson post List --%>
 
-          <div class="col-md-6">
+          <div class="col-md-12">
               <div class="card">
                   <div class="card-body">
                       <div class="row">
@@ -75,6 +75,11 @@
                               <center>
                                   <h4>Admisson Posts</h4>
                               </center>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col">
+                              <a href="sAddmission.aspx">my applied list</a>
                           </div>
                       </div>
                       <div class="row">

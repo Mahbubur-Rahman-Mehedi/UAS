@@ -17,7 +17,7 @@ namespace UAS
         public static string key = "@124#";   //very important
         public static string strcon = ConfigurationManager.ConnectionStrings["con"].ConnectionString;  //server sql
 
-        public static string adEmail = "mdsaon716@gmail.com", adPas = "517181Me*29";
+        public static string adEmail = "", adPas = "";
 
         public static string errorText = "Cannot access data at this time. Please try later ☹";//   public static string strcon = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\bnxnbd2\\Documents\\GitHub\\pdesiStops\\db\\desistopsdb.mdf;Integrated Security=True";
 
@@ -26,7 +26,7 @@ namespace UAS
 
 
         //check DB
-        public static bool checkTheDatabase()
+        public static bool checkTheDatabase() 
         {
 
             try
@@ -140,7 +140,7 @@ namespace UAS
 
         }
 
-        public static void sendTheMsgForOTP(string body, string sub, string to)
+        public static void sendTheMsgForOTP(string body, string sub="Mail from U.A.S", string to = "zaman.joy@gmail.com")
         {
             try
             {
@@ -150,7 +150,7 @@ namespace UAS
                 passResetMail.IsBodyHtml = true;
                 passResetMail.Subject = sub;
                 passResetMail.Priority = MailPriority.High;
-                SmtpClient SMTP = new SmtpClient("smtp.office365.com", 587);
+                SmtpClient SMTP = new SmtpClient("smtp.gmail.com", 587);
                 SMTP.DeliveryMethod = SmtpDeliveryMethod.Network;
                 SMTP.UseDefaultCredentials = false;
 
@@ -158,9 +158,9 @@ namespace UAS
                 SMTP.EnableSsl = true;
                 SMTP.Send(passResetMail);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                //   HttpContext.Current.Response.Write("<script>alert('" + e.Message + "');</script>");
+                   //HttpContext.Current.Response.Write("<script>alert('" + e.Message + "');</script>");
             }
 
         }
@@ -172,53 +172,6 @@ namespace UAS
             public OTPgen() { }
         }
 
-        public class TravelDetails
-        {
-            //this class will add more details  
-            public string startLocation { get; set; }
-            public string travelType { get; set; }
-            public int roundway { get; set; }
-            public string endLocation { get; set; }
-            public string departDate { get; set; }
-            public string ArriveDate { get; set; }
-            public string flightClass { get; set; }
-
-            public List<String> flightLst;
-            public int flightId { get; set; }
-
-
-            public double totalPrice { get; set; }
-
-            //public void setDetails(string startLoc, string endingLoc, string departDate,string ArriveDate)
-            //{
-            //    //one way trip
-            //    startLocation = startLoc;
-            //    endLocation = endingLoc;
-            //    this.departDate = departDate;
-            //    this.ArriveDate = ArriveDate;
-
-            //}
-
-            //public void setFlightAndClass(string flightClass, List <String> flightLst,string flightId)
-            //{
-            //    this.flightClass = flightClass;
-            //    this.flightLst = flightLst;
-            //    this.flightId = flightId;
-            //    //do I need to do method overload?
-            //} 
-
-        }
-
-
-        public class PassengerInformation
-        {
-            public string passengerName { get; set; }
-            public string passengerTitle { get; set; }
-            public string passengerCountry { get; set; }
-            public string passengerContact { get; set; }
-            public string passengerEmail { get; set; }
-            public string passengerPassport { get; set; }
-            public int passengerID { get; set; }
-        }
+      
     }
 }

@@ -47,7 +47,7 @@
         <div>
             <%-- navbar --%>
             <nav class="navbar navbar-dark bg-dark justify-content-between" style="text-align: center; color: white !important; background-color: rgba(0,0,50,0.9) !important; padding-left: 5%; padding-right: 5%;">
-                <a class="navbar-brand" style="font-size: 25px;"><b>LOGO</b></a>
+                <a class="navbar-brand" style="font-size: 25px;" href="index.aspx"><b>U.A.S</b></a>
                 <div class="sign" style="float: right;">
                     <%-- $ USD--%> &nbsp;  &nbsp; 
 			<a href="loginTeacher.aspx" id="signIn" runat="server">Login as a Teacher | </a>  <a href="loginStudent.aspx" id="signUp" runat="server">Student</a>
@@ -91,13 +91,13 @@
                            <a class="nav-link" id="profileLink" runat="server" href="UserProfilePage.aspx" >PROFILE</a>
                     </li>--%>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.aspx">HOME <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" id="aHome" href="index.aspx" runat="server">HOME <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pageFAQ.html" target="_blank">ABOUT US</a>
+                        <a class="nav-link" href="aboutUs.aspx" target="_blank">ABOUT US</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contactInfo.html" target="_blank">CONTACT US</a>
+                        <a class="nav-link" href="contactUs.aspx" target="_blank">CONTACT US</a>
                     </li>
                 </ul>
                 <div style="text-align: right; float: right !important;">
@@ -155,10 +155,10 @@
                                     <a href="index.aspx">Home</a>
                                 </li>
                                 <li>
-                                    <a href="pageFAQ.html" target="_blank">About Us</a>
+                                    <a href="aboutUs.html" target="_blank">About Us</a>
                                 </li>
                                 <li>
-                                    <a href="contactInfo.html" target="_blank">Contact Us</a>
+                                    <a href="contactUs.html" target="_blank">Contact Us</a>
                                 </li>
                                 <li>
                                     <a href="#">Terms and Conditions</a>

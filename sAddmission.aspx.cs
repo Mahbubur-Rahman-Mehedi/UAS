@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace UAS
 {
-    public partial class sCourses : System.Web.UI.Page
+    public partial class sAddmission : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -23,7 +23,7 @@ namespace UAS
                 {
 
                     fillTheEvents();
-                   
+
                 }
             }
         }
@@ -38,16 +38,16 @@ namespace UAS
 
 
                 // String qur = "select * from jobList 
-                String qur = "select c.c_id, c.subject, c.amount, cs.date, t.t_name from c_assign as cs " +
-                    "inner join course as c on c.c_id= cs.c_id " +
-                    "inner join teacher as t on t.t_id = c.t_id " +
-                    "where cs.s_id = " + Session["sid"];
+                String qur = "select a.id,a.addmisson_season,a.course,a.deadline,a.exam_date,a.phone,a.cgpa,u.u_name,u.u_details from a_assign as asn " +
+                    " Right join addmisson as a on a.id = asn.a_id " +
+                    " Left join university as u on u.u_id = a.u_id " +
+                    "where asn.s_id = " + Session["sid"];
 
                 SqlDataAdapter sqlData = new SqlDataAdapter(qur, con);
                 DataTable tab = new DataTable();
                 sqlData.Fill(tab);
-                eventGrid.DataSource = tab;
-                eventGrid.DataBind();
+                GridView1.DataSource = tab;
+                GridView1.DataBind();
                 con.Close();
 
             }
@@ -63,9 +63,9 @@ namespace UAS
 
 
         }
-        protected void OnPageIndexChanging(object sender, GridViewPageEventArgs e)
+        protected void OnPageIndexChanging1(object sender, GridViewPageEventArgs e)
         {
-            eventGrid.PageIndex = e.NewPageIndex;
+            GridView1.PageIndex = e.NewPageIndex;
             fillTheEvents();
         }
 
@@ -84,14 +84,14 @@ namespace UAS
                 if (con.State == ConnectionState.Closed) con.Open();
 
                 String qur =
-                    " delete from c_assign where c_id = '" +id + "' " +
+                    " delete from a_assign where a_id = '" + id + "' " +
                     "and s_id='" + Session["sid"] + "'";
                 System.Diagnostics.Debug.WriteLine(qur);
                 SqlCommand cmd = new SqlCommand(qur, con);
 
                 cmd.ExecuteNonQuery();
                 con.Close();
-              
+
                 fillTheEvents();
                 Response.Write("<script>alert('Canceled');</script>");
 

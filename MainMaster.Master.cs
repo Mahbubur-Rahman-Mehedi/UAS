@@ -89,7 +89,7 @@ namespace UAS
                     {
                         lblPointsTotal.Text = "0";
                     }
-                    if (Session["id"] == null) //not logged in
+                    if (Session["id"] == null && Session["sid"] == null) //not logged in
                     {
                         logout.Visible = false;
                         signIn.Visible = true;
@@ -99,6 +99,10 @@ namespace UAS
                     }
                     else //logged in
                     {
+                        if(Session["id"] != null)
+                        {
+                            aHome.HRef = "teacherIndex.aspx";
+                        }
                         logout.Visible = true;
                         signUp.Visible = false;
                         signIn.Visible = false;

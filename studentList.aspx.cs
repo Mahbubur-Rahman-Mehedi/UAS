@@ -9,22 +9,25 @@ using System.Web.UI.WebControls;
 
 namespace UAS
 {
-    public partial class teacherIndex : System.Web.UI.Page
+    public partial class studentList : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["id"] == null) //not logged in
+            if (Session["courseId"] == null) //not logged in
             {
-                Response.Redirect("loginTeacher.aspx");
+                Response.Redirect("teacherIndex.aspx");
             }
             else
             {
                 if (!IsPostBack)
                 {
-
                     fillTheEvents();
                 }
             }
+        }
+        protected void back_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("teacherIndex.aspx");
         }
         void fillTheEvents()
         {
@@ -34,14 +37,16 @@ namespace UAS
             {
                 if (con.State == ConnectionState.Closed) con.Open();
 
-
+//                select* from c_assign as cs
+//inner join course as c on c.c_id = cs.c_id
+//where cs.c_id = 2
+//and c.t_id = 6
                 // String qur = "select * from jobList 
-                String qur = "select c.c_id,c.subject,c.t_id,c.amount,c.status,COUNT(c.c_id) as total from course as c" +
-                    " inner join c_assign as cs on cs.c_id = c.c_id " +
-                    "where t_id = " + Session["id"];
-                qur += " group by c.c_id,c.subject,c.t_id,c.amount,c.status";
-
-                //string qur = "select * from course where t_id ="+ Session["id"];
+                String qur = " select* from c_assign as cs " +
+                    " inner join course as c on c.c_id = cs.c_id " +
+                    " inner join student as s on s.s_id = cs.s_id " +
+                    " where cs.c_id = " + Session["courseId"] +
+                    " and c.t_id = " + Session["id"];
 
                 SqlDataAdapter sqlData = new SqlDataAdapter(qur, con);
                 DataTable tab = new DataTable();
@@ -65,13 +70,6 @@ namespace UAS
         {
             eventGrid.PageIndex = e.NewPageIndex;
             fillTheEvents();
-        }
-
-        protected void btnTotal_Click(object sender, EventArgs e)
-        {
-            string id = (sender as LinkButton).CommandArgument;
-            Session["courseId"] = id;
-            Response.Redirect("studentList.aspx");
         }
     }
 }

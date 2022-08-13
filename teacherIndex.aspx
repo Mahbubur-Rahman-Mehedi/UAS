@@ -26,16 +26,34 @@
 
                                       <asp:BoundField DataField="c_id" HeaderText="ID" />
                                       <asp:BoundField DataField="subject" HeaderText="Course Name" />
+                                     
+                                     <%-- <asp:TemplateField>
+                                          <HeaderTemplate>
+                                              Total Student
+                                          </HeaderTemplate>
+                                          <ItemTemplate>
+                                              <asp:LinkButton ID="btnSelect" runat="server" CommandArgument='<%#Eval("c_id") %>' OnClick="btnSelect_Click"> <%#Eval("title")  %> </asp:LinkButton>
+                                          </ItemTemplate>
+                                      </asp:TemplateField>--%>
                                       
-                                      <asp:TemplateField>
+                                     <%-- <asp:TemplateField>
                                           <HeaderTemplate>
                                               Teacher
                                           </HeaderTemplate>
                                           <ItemTemplate>
                                               <p><%# Convert.ToString(Eval("t_id")) == string.Empty ? "Not assigned" : Eval("t_id") %></p>
                                           </ItemTemplate>
-                                      </asp:TemplateField>
+                                      </asp:TemplateField>--%>
                                       <asp:BoundField DataField="amount" HeaderText="Amount" />
+                                      <asp:BoundField DataField="total" HeaderText="Total Students" />
+                                       <asp:TemplateField>
+                                          <HeaderTemplate>
+                                              Action
+                                          </HeaderTemplate>
+                                          <ItemTemplate>
+                                              <asp:LinkButton ID="btnTotal" runat="server" CommandArgument='<%#Eval("c_id") %>' OnClick="btnTotal_Click">Students List</asp:LinkButton>
+                                          </ItemTemplate>
+                                      </asp:TemplateField>
                                   </Columns>
                                   <PagerSettings Mode="NumericFirstLast" PageButtonCount="4" FirstPageText="First" LastPageText="Last" NextPageText="Next " />
 

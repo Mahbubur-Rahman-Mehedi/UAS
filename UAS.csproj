@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="aboutUs.aspx" />
     <Content Include="adminCourse.aspx" />
     <Content Include="adminIndex.aspx" />
     <Content Include="adminLogin.aspx" />
@@ -74,11 +75,14 @@
     <Content Include="adminStudentControl.aspx" />
     <Content Include="adminTeacherControl.aspx" />
     <Content Include="adminUniList.aspx" />
+    <Content Include="contactUs.aspx" />
     <Content Include="index.aspx" />
     <Content Include="insertAddmission.aspx" />
     <Content Include="loginStudent.aspx" />
     <Content Include="loginTeacher.aspx" />
+    <Content Include="sAddmission.aspx" />
     <Content Include="sCourses.aspx" />
+    <Content Include="studentList.aspx" />
     <Content Include="studentRegistration.aspx" />
     <Content Include="teacherIndex.aspx" />
     <Content Include="teacherRegistration.aspx" />
@@ -87,6 +91,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="aboutUs.aspx.cs">
+      <DependentUpon>aboutUs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="aboutUs.aspx.designer.cs">
+      <DependentUpon>aboutUs.aspx</DependentUpon>
+    </Compile>
     <Compile Include="adminCourse.aspx.cs">
       <DependentUpon>adminCourse.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -137,6 +148,13 @@
       <DependentUpon>adminUniList.aspx</DependentUpon>
     </Compile>
     <Compile Include="CommonClass.cs" />
+    <Compile Include="contactUs.aspx.cs">
+      <DependentUpon>contactUs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="contactUs.aspx.designer.cs">
+      <DependentUpon>contactUs.aspx</DependentUpon>
+    </Compile>
     <Compile Include="index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -173,12 +191,26 @@
     <Compile Include="MainMaster.Master.designer.cs">
       <DependentUpon>MainMaster.Master</DependentUpon>
     </Compile>
+    <Compile Include="sAddmission.aspx.cs">
+      <DependentUpon>sAddmission.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="sAddmission.aspx.designer.cs">
+      <DependentUpon>sAddmission.aspx</DependentUpon>
+    </Compile>
     <Compile Include="sCourses.aspx.cs">
       <DependentUpon>sCourses.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="sCourses.aspx.designer.cs">
       <DependentUpon>sCourses.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="studentList.aspx.cs">
+      <DependentUpon>studentList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="studentList.aspx.designer.cs">
+      <DependentUpon>studentList.aspx</DependentUpon>
     </Compile>
     <Compile Include="studentRegistration.aspx.cs">
       <DependentUpon>studentRegistration.aspx</DependentUpon>
