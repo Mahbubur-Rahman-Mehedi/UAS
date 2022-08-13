@@ -78,6 +78,7 @@
     <Content Include="insertAddmission.aspx" />
     <Content Include="loginStudent.aspx" />
     <Content Include="loginTeacher.aspx" />
+    <Content Include="sCourses.aspx" />
     <Content Include="studentRegistration.aspx" />
     <Content Include="teacherIndex.aspx" />
     <Content Include="teacherRegistration.aspx" />
@@ -171,6 +172,13 @@
     </Compile>
     <Compile Include="MainMaster.Master.designer.cs">
       <DependentUpon>MainMaster.Master</DependentUpon>
+    </Compile>
+    <Compile Include="sCourses.aspx.cs">
+      <DependentUpon>sCourses.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="sCourses.aspx.designer.cs">
+      <DependentUpon>sCourses.aspx</DependentUpon>
     </Compile>
     <Compile Include="studentRegistration.aspx.cs">
       <DependentUpon>studentRegistration.aspx</DependentUpon>

@@ -51,8 +51,8 @@ namespace UAS
 
                         Session["username"] = dr.GetValue(1).ToString();
 
-                        Session["id"] = dr.GetValue(0).ToString();
-                        System.Diagnostics.Debug.WriteLine(Session["id"].ToString());
+                        Session["sid"] = dr.GetValue(0).ToString();
+                        System.Diagnostics.Debug.WriteLine(Session["sid"].ToString());
 
                         //Set Profile picture 
                         if (dr.GetValue(3) != DBNull.Value)

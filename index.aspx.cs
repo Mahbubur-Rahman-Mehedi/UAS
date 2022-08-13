@@ -13,7 +13,7 @@ namespace UAS
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["id"] == null) //not logged in
+            if (Session["sid"] == null) //not logged in
             {
                 Response.Redirect("loginStudent.aspx");
             }
@@ -23,6 +23,7 @@ namespace UAS
                 {
 
                     fillTheEvents();
+                    fillAddmissionDetails();
                 }
             }
         }
@@ -56,11 +57,51 @@ namespace UAS
             {
                 con.Close();
             }
+
+           
         }
         protected void OnPageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             eventGrid.PageIndex = e.NewPageIndex;
             fillTheEvents();
+        }
+
+        void fillAddmissionDetails()
+        {
+            SqlConnection con = new SqlConnection(CommonClass.strcon);
+            try
+            {
+                if (con.State == ConnectionState.Closed) con.Open();
+
+                String qur = "select id,addmisson_season,deadline,exam_date,course,phone,u.u_name " +
+                    "from addmisson as a " +
+                    "Left join university as u on u.u_id = a.id";
+
+                SqlDataAdapter sqlData = new SqlDataAdapter(qur, con);
+                DataTable tab = new DataTable();
+                sqlData.Fill(tab);
+                GridView1.DataSource = tab;
+                GridView1.DataBind();
+                con.Close();
+
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('" + ex.Message + "');</script>");
+
+            }
+            finally
+            {
+                con.Close();
+            }
+
+          
+        }
+
+        protected void OnPageIndexChanging1(object sender, GridViewPageEventArgs e)
+        {
+            GridView1.PageIndex = e.NewPageIndex;
+            fillAddmissionDetails();
         }
 
         protected void btnApply_Click1(object sender, EventArgs e)
@@ -76,13 +117,11 @@ namespace UAS
                 SqlConnection con = new SqlConnection(CommonClass.strcon);
                 try
                 {
-                   
-
                         con.Open();
 
                         String findMatchEmail = "select * from c_assign where" +
-                            " c-id='" + name.Text + "'";
-
+                            " c_id=" + id + " and s_id = " + Session["sid"] ;
+                System.Diagnostics.Debug.WriteLine(findMatchEmail);
                         SqlCommand sqlCommand = new SqlCommand(findMatchEmail, con);
 
                         SqlDataReader dr = sqlCommand.ExecuteReader();
@@ -90,7 +129,7 @@ namespace UAS
                         if (dr.Read())
                         {
                             ScriptManager.RegisterStartupScript(this, this.GetType(),
-                                "script", "alert('Course Already Exists');", true);
+                                "script", "alert('Already Enrolled');", true);
                             con.Close();
 
                         }
@@ -101,24 +140,13 @@ namespace UAS
                             con.Close();
                             con.Open();
 
-                            string qur = "insert into course (subject, amount ";
-
-                            if (txtTeacher.Text != null && txtTeacher.Text != "")
-                            {
-                                qur += ",t_id";
-                            }
-
+                            string qur = "insert into c_assign (c_id, s_id ";
                             qur += " ) " +
                                 "values (";
 
-                            qur += "'" + name.Text + "',";
-                            qur += "'" + txtAmount.Text + "'";
-                            if (txtTeacher.Text != null && txtTeacher.Text != "")
-                            {
-                                qur += ",'" + txtTeacher.Text + "'";
-                            }
-
-
+                            qur += "'" + id + "',";
+                            qur += "'" + Session["sid"] + "'";
+                           
                             qur += ")";
                             System.Diagnostics.Debug.WriteLine(qur);
 
@@ -132,23 +160,88 @@ namespace UAS
                             //  getEventDetailsBox();
 
                             ScriptManager.RegisterStartupScript(this, this.GetType(), "script",
-                                "alert('Sucessfully Inserted');", true);
+                                "alert('Sucessfully joined');", true);
 
                             // Session["UserEmail"] = EmailAddress.Text;
 
                         }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script",
-                        "alert('COurse Info didn't submitted properly');", true);
-                }
+                Response.Write("<script>alert('" + ex.Message + "');</script>");
+            }
                 finally
                 {
                     con.Close();
                 }
 
                
+        }
+
+        protected void btnApply1_Click(object sender, EventArgs e)
+        {
+            string id = (sender as LinkButton).CommandArgument;
+
+            //Session["cApplyId"] = id;
+
+            //Response.Redirect("");
+
+
+            SqlConnection con = new SqlConnection(CommonClass.strcon);
+            try
+            {
+                con.Open();
+
+                String findMatchEmail = "select * from a_assign where" +
+                    " a_id=" + id + " and s_id = " + Session["sid"];
+                System.Diagnostics.Debug.WriteLine(findMatchEmail);
+                SqlCommand sqlCommand = new SqlCommand(findMatchEmail, con);
+
+                SqlDataReader dr = sqlCommand.ExecuteReader();
+
+                if (dr.Read())
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(),
+                        "script", "alert('Already Enrolled');", true);
+                    con.Close();
+
+                }
+                else
+                {
+                    sqlCommand.Dispose();
+                    dr.Close();
+                    con.Close();
+                    con.Open();
+
+                    string qur = "insert into a_assign (a_id, s_id ";
+                    qur += " ) " +
+                        "values (";
+                    qur += "'" + id + "',";
+                    qur += "'" + Session["sid"] + "'";
+                    qur += ")";
+
+                    System.Diagnostics.Debug.WriteLine(qur);
+                    SqlCommand cmd = new SqlCommand(qur, con);
+                    cmd.ExecuteNonQuery();
+                    fillTheEvents();
+
+                    //  getEventDetailsBox();
+
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script",
+                        "alert('Sucessfully applied');", true);
+
+                    // Session["UserEmail"] = EmailAddress.Text;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('" + ex.Message + "');</script>");
+            }
+            finally
+            {
+                con.Close();
+            }
         }
     }
 }
